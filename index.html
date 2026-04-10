@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eshan Jaffar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    :root {
+      --bg: #0e0e0e;
+      --bg-nav: rgba(14,14,14,0.92);
+      --surface: #161616;
+      --border: #2a2a2a;
+      --text: #e8e4dc;
+      --muted: #888;
+      --accent: #c9a96e;
+      --link: #b8956a;
+      --link-hover: #e0b87a;
+    }
+    [data-theme="light"] {
+      --bg: #f5f2ec;
+      --bg-nav: rgba(245,242,236,0.92);
+      --surface: #edeae3;
+      --border: #d0ccc4;
+      --text: #1a1916;
+      --muted: #6b6760;
+      --accent: #8b6334;
+      --link: #7a5528;
+      --link-hover: #5c3d18;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 19px;
+      line-height: 1.75;
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg-nav);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 52px;
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    /* theme toggle */
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+    .theme-toggle .icon { font-size: 13px; }
+
+    /* ── LAYOUT ── */
+    main {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    /* ── HEADER ── */
+    .site-header { margin-bottom: 3.5rem; }
+
+    .site-header h1 {
+      font-size: 2.4rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .site-header .meta {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .site-header .meta a {
+      color: var(--link);
+      text-decoration: none;
+    }
+    .site-header .meta a:hover { color: var(--link-hover); }
+
+    /* ── SECTIONS ── */
+    section {
+      margin-bottom: 3.5rem;
+      scroll-margin-top: 70px;
+    }
+
+    section h2 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section p {
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    a {
+      color: var(--link);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.2s;
+    }
+    a:hover { color: var(--link-hover); }
+
+    /* ── PAPER ENTRY ── */
+    .paper {
+      padding: 1.1rem 1.3rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 2px;
+      margin-bottom: 1rem;
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    .paper .title {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+    }
+
+    .paper .desc {
+      font-size: 15px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* ── SEMINAR LIST ── */
+    .seminar-list {
+      list-style: none;
+    }
+    .seminar-list li {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 17px;
+    }
+    .seminar-list li:last-child { border-bottom: none; }
+    .seminar-list .talk-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+    .seminar-list .talk-title {
+      color: var(--text);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      margin-top: 5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    footer a { color: var(--muted); }
+    footer a:hover { color: var(--accent); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 520px) {
+      nav { padding: 0 1rem; }
+      main { padding: 2.5rem 1.25rem 4rem; }
+      .nav-links { gap: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#seminar">Seminar</a></li>
+    <li><a href="#notes">Notes</a></li>
+  </ul>
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+    <span class="icon" id="theme-icon">☀</span>
+    <span id="theme-label">Light</span>
+  </button>
+</nav>
+
+<main>
+
+  <header class="site-header" id="about">
+    <h1>Eshan Jaffar</h1>
+    <p class="meta">
+      Undergraduate Student<br>
+      Computer Science · <a href="https://www.cmi.ac.in/" target="_blank">Chennai Mathematical Institute</a><br>
+      eshan.ug2023@cmi.ac.in
+    </p>
+  </header>
+
+  <section>
+    <h2>About</h2>
+    <p>
+      I am an undergraduate student at <a href="https://www.cmi.ac.in/" target="_blank">Chennai Mathematical Institute</a>
+      doing BSc (Honours) in Mathematics and Computer Science. My primary area of interest is number theory.
+      Here's my <a href="Eshan_Resume.pdf" target="_blank">CV</a>.
+    </p>
+  </section>
+
+  <section id="research">
+    <h2>Research</h2>
+    <p style="color: var(--muted); font-style: italic; font-size: 17px;">Nothing here yet — check back soon.</p>
+  </section>
+
+  <section id="seminar">
+    <h2>Seminar</h2>
+    <ul class="seminar-list">
+      <li>
+        <p class="talk-meta" style="color: var(--muted); font-style: italic;">No upcoming talks scheduled.</p>
+      </li>
+    </ul>
+  </section>
+
+  <section id="notes">
+    <h2>Notes</h2>
+    <div class="paper">
+      <p class="title">
+        <a href="NT_INMOTC.pdf" target="_blank">Number Theory Problems</a>
+      </p>
+      <p class="desc">Handout prepared for INMOTC, Chennai on Number Theory</p>
+    </div>
+  </section>
+
+  <footer>
+    <a href="https://www.kiragoldner.com/" target="_blank">
+      <img src="https://www.kiragoldner.com/favicon.png" width="12" alt="Template">
+    </a>
+    <span>© Template</span>
+  </footer>
+
+</main>
+
+<script>
+  function toggleTheme() {
+    const html = document.documentElement;
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    document.getElementById('theme-icon').textContent = isDark ? '☽' : '☀';
+    document.getElementById('theme-label').textContent = isDark ? 'Dark' : 'Light';
+  }
+</script>
+
+</body>
+</html>
